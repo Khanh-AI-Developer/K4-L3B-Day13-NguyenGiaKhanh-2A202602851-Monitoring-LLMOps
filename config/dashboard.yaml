@@ -33,7 +33,7 @@ dashboard:
     - id: errors
       title: Error rate and retrieval success
       source: data/logs.jsonl
-      events: [request_received, request_failed]
+      events: [request_received, response_sent, request_failed]
       fields: [error_type, tool_name, tool_success]
       aggregations: [error_rate_pct, count_by_value, tool_success_rate_pct]
       query: 'count(event == "request_failed") / count(event == "request_received") * 100; count_by(error_type); count(tool_success == true) / count(tool_success != null) * 100'
